@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\parrotcontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,5 @@ use App\Http\Controllers\parrotcontroller;
 Route::get('/', [parrotcontroller::class, "homepage"]);
 
 Route::get('/about', [parrotcontroller::class, "aboutPage"]);
+
+route::post('/register', [UserController::class, 'register']);
