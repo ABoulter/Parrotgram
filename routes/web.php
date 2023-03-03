@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\parrotcontroller;
+
 
 
 /*
@@ -18,8 +18,10 @@ use App\Http\Controllers\parrotcontroller;
 
 Route::get('/', [UserController::class, "showCorrectHomepage"]);
 
-Route::get('/about', [parrotcontroller::class, "aboutPage"]);
+
 
 route::post('/register', [UserController::class, 'register']);
 
 route::post('/login', [UserController::class, 'login']);
+
+route::post('/logout', [UserController::class, 'logout']);

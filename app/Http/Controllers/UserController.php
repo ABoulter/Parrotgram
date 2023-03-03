@@ -8,6 +8,12 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect('/')->with('success', 'You are now logged out, see you later!');
+    }
     public function showCorrectHomepage()
     {
         if (auth()->check()) {
@@ -25,9 +31,9 @@ class UserController extends Controller
 
         if (auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
-            return 'congrats';
+            return redirect('/')->with('success', 'You have successfully logged in Parrot.');
         } else {
-            return 'sorry';
+            return redirect('/')->with('failure', 'Invalid login.');
         }
     }
     public function register(Request $request)
@@ -41,7 +47,10 @@ class UserController extends Controller
 
         $incomingFields['password'] = bcrypt($incomingFields['password']);
 
-        User::create($incomingFields);
-        return 'Hello';
+        $user = User::create($incomingFields);
+        auth()->login($user);
+
+
+        return redirect('/')->with('success', 'Thank you for joining ParrotGram!');
     }
 }
