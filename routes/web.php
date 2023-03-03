@@ -16,8 +16,10 @@ use App\Http\Controllers\parrotcontroller;
 |
 */
 
-Route::get('/', [parrotcontroller::class, "homepage"]);
+Route::get('/', [UserController::class, "showCorrectHomepage"]);
 
 Route::get('/about', [parrotcontroller::class, "aboutPage"]);
 
 route::post('/register', [UserController::class, 'register']);
+
+route::post('/login', [UserController::class, 'login']);
