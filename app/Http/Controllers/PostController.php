@@ -11,7 +11,7 @@ class PostController extends Controller
     public function viewSinglePost(Post $post)
     {
 
-        $post['body'] = Str::markdown($post->body);
+        $post['body'] = strip_tags(Str::markdown($post->body), '<p><ul><ol><li><strong><em><h3><br><h2><h1>');
         return view('single-post', ['post' => $post]);
     }
     public function storeNewPost(Request $request)
@@ -30,6 +30,7 @@ class PostController extends Controller
     }
     public function showCreateForm()
     {
+
         return view('create-post');
     }
 }
