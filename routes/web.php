@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
 // User Routes
 Route::get('/', [UserController::class, "showCorrectHomepage"])->name('login');
 Route::post('/register', [UserController::class, 'register'])->middleware('guest');
