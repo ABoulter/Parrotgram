@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>OurApp</title>
+    <title>ParrotGram</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
@@ -31,8 +31,7 @@
                         data-placement="bottom"><i class="fas fa-comment"></i></span>
                     <a href="/profile/{{ auth()->user()->username }}" class="mr-2"><img title="My Profile"
                             data-toggle="tooltip" data-placement="bottom"
-                            style="width: 32px; height: 32px; border-radius: 16px"
-                            src="https://gravatar.com/avatar/f64fc44c03a8a7eb1d52502950879659?s=128" /></a>
+                            style="width: 32px; height: 32px; border-radius: 16px" src="{{ auth()->user()->avatar }}" /></a>
                     <a class="btn btn-sm btn-success mr-2" href="/create-post">Create Post</a>
                     <form action="/logout" method="POST" class="d-inline">
                         @csrf
