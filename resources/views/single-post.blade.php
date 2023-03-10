@@ -7,8 +7,7 @@
                     <a href="/post/{{ $post->id }}/edit" class="text-primary mr-2" data-toggle="tooltip"
                         data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
                     <form class="delete-post-form d-inline" action="/post/{{ $post->id }}" method="POST">
-                        <p><small><strong><a href="/post/{{ $post->id }}">&laquo; Back to post
-                                    </a></strong></small></p>
+
                         @csrf
                         @method('DELETE')
                         <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top"
