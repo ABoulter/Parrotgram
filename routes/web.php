@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\MustBeLoggedIn;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FollowController;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Facades\Route;
 
 
 
@@ -35,5 +37,9 @@ Route::get('/post/{post}', [PostController::class, 'viewSinglePost']);
 Route::delete('/post/{post}', [PostController::class, 'delete'])->middleware('can:delete,post');
 Route::get('/post/{post}/edit', [PostController::class, 'showEditForm'])->middleware('can:update,post');
 Route::put('/post/{post}', [PostController::class, 'actuallyUpdate'])->middleware('can:update,post');
+
+// Follower Routes
+Route::post("/create-follow/{user:username}", [FollowController::class, 'createFollow'])->middleware('mustBeLoggedIn');
+Route::post("/remove-follow/{user:username}", [FollowController::class, 'removeFollow'])->middleware('mustBeLoggedIn');
 // Profile Routes
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
