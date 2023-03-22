@@ -56,10 +56,12 @@ class UserController extends Controller
     public function profile(User $user)
     {
         $this->getSharedData($user);
-
-
-
         return view('profile-posts', ['posts' => $user->posts()->latest()->get()]);
+    }
+
+    public function profileRaw(User $user)
+    {
+        return response()->json(['theHTML' => view('profile-posts-only', ["posts" => $user->posts()->latest()->get()])->render(), 'docTitle' => $user->username . "'s profile"]);
     }
 
 
@@ -68,12 +70,23 @@ class UserController extends Controller
         $this->getSharedData($user);
         return view('profile-followers', ['followers' => $user->followers()->latest()->get()]);
     }
+    public function profileFollowersRaw(User $user)
+    {
+        return response()->json(['theHTML' => view('profile-followers-only', ["followers" => $user->followers()->latest()->get()])->render(), 'docTitle' => $user->username . "'s followers"]);
+
+    }
 
 
     public function profileFollowing(User $user)
     {
         $this->getSharedData($user);
         return view('profile-following', ['following' => $user->Following()->latest()->get()]);
+    }
+
+    public function profileFollowingRaw(User $user)
+    {
+        return response()->json(['theHTML' => view('profile-following-only', ["following" => $user->following()->latest()->get()])->render(), 'docTitle' => 'Who ' . $user->username . " follows"]);
+
     }
 
 

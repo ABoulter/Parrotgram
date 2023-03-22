@@ -3,6 +3,11 @@ import "./bootstrap";
 import Search from "./live-search";
 
 import Chat from "./chat";
+import Profile from "./profile";
+
+if (document.querySelector(".header-nav")) {
+    new Profile();
+}
 
 if (document.querySelector(".header-search-icon")) {
     new Search();
