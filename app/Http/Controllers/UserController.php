@@ -109,6 +109,23 @@ class UserController extends Controller
             return view('homepage', ['postCount' => $postCount]);
         }
     }
+
+    public function loginApi(Request $request)
+    {
+
+        $incomingFields = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt($incomingFields)) {
+            $user = User::where('username', $incomingFields['username'])->first();
+            $token = $user->createToken('ourapptoken')->plainTextToken;
+            return $token;
+        }
+        return '';
+
+    }
     public function login(Request $request)
     {
         $incomingFields = $request->validate([
